@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --biocad-blue-500: #0057b7;
+  --biocad-blue-600: #00479b;
+  --biocad-navy-900: #0c204d;
+  --biocad-grey-50: #f4f6fb;
+  --radius: 8px;
+
+  --fs-h1: clamp(1rem, 1.2rem + 2vw, 3rem);
+  --page-padding-x: clamp(10px, 4vw, 40px);
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  color: var(--biocad-navy-900);
+  background: #fff;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  margin: 0 0 clamp(24px, 6vw, 60px);
+  color: var(--biocad-navy-900);
+}
+
+#root {
+  max-width: 1200px;
+}
