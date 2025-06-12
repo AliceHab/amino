@@ -7,7 +7,8 @@
 ![image](https://downloader.disk.yandex.ru/preview/80dd8ef1b0ae2316f476555784c2fd37209ef08f768cf5f2636bd53490872d13/684b60ff/41-mIGXwWxCZmnuLWPjxAAXK7vJ35pc1n3uOY4bMS3-ARdI8m3n0g-Mmq05ni4TQc-eXet0x8W1XK2436EKGlA%3D%3D?uid=0&filename=2025-06-12_22-21-28.png&disposition=inline&hash=&limit=0&content_type=image%2Fpng&owner_uid=0&tknv=v3&size=2048x2048)
 > Визуализация фрагмента α-цепи человеческого гемоглобина
 
-Инструмент для визуального сравнения двух аминокислотных последовательностей.
+Инструмент для визуального сравнения двух аминокислотных последовательностей.  
+Деплой GitHub Pages — https://alicehab.github.io/amino/
 
 ## Основные фичи
 
