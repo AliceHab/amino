@@ -1,12 +1,13 @@
 // src/components/AlignmentForm/AlignmentForm.tsx
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, FormProvider } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
+import SeqPresetPicker from '../PresetPicker/PresetPicker'
 
-const aminoRegexp = /^[ARNDCEQGHILKMFPSTWYV-]+$/i
+export const aminoRegexp = /^[ARNDCEQGHILKMFPSTWYV-]+$/i
 
 const schema = z
   .object({
@@ -40,59 +41,69 @@ interface AlignmentFormProps {
 export default function AlignmentForm({
   onSubmit,
 }: AlignmentFormProps) {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<FormValues>({
+  const methods = useForm<FormValues>({
     mode: 'onChange',
     resolver: zodResolver(schema),
     defaultValues: { seq1: '', seq2: '' },
   })
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid },
+  } = methods
+
   return (
-    <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h1>
-        Визуализация выравнивания аминокислотных последовательностей
-      </h1>
+    <FormProvider {...methods}>
+      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <h1>
+          Визуализация выравнивания аминокислотных последовательностей
+        </h1>
 
-      <Stack spacing={2}>
-        <Controller
-          name="seq1"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Последовательность 1"
-              placeholder="VLSPADKTNIKASWEKIGSHG"
-              error={!!errors.seq1}
-              helperText={errors.seq1?.message}
-              fullWidth
-              inputProps={{ style: { textTransform: 'uppercase' } }} // todo
-            />
-          )}
-        />
+        <SeqPresetPicker />
 
-        <Controller
-          name="seq2"
-          control={control}
-          render={({ field }) => (
-            <TextField
-              {...field}
-              label="Последовательность 2"
-              placeholder="VLSPADKTNIKASWEKIGSHG"
-              error={!!errors.seq2}
-              helperText={errors.seq2?.message}
-              fullWidth
-              inputProps={{ style: { textTransform: 'uppercase' } }}
-            />
-          )}
-        />
+        <Stack spacing={2}>
+          <Controller
+            name="seq1"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Последовательность 1"
+                placeholder="VLSPADKTNIKASWEKIGSHG"
+                error={!!errors.seq1}
+                helperText={errors.seq1?.message}
+                fullWidth
+                inputProps={{ style: { textTransform: 'uppercase' } }} // todo
+              />
+            )}
+          />
 
-        <Button type="submit" variant="contained" disabled={!isValid}>
-          Визуализация
-        </Button>
-      </Stack>
-    </form>
+          <Controller
+            name="seq2"
+            control={control}
+            render={({ field }) => (
+              <TextField
+                {...field}
+                label="Последовательность 2"
+                placeholder="VLSPADKTNIKASWEKIGSHG"
+                error={!!errors.seq2}
+                helperText={errors.seq2?.message}
+                fullWidth
+                inputProps={{ style: { textTransform: 'uppercase' } }}
+              />
+            )}
+          />
+
+          <Button
+            type="submit"
+            variant="contained"
+            disabled={!isValid}
+          >
+            Визуализация
+          </Button>
+        </Stack>
+      </form>
+    </FormProvider>
   )
 }

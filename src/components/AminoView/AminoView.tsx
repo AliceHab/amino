@@ -92,8 +92,14 @@ export default function AlignmentView({
     <Box
       key={`${isTop ? 't' : 'b'}${rowIdx}`}
       component="span"
-      sx={{ display: 'inline', overflowWrap: "anywhere" }}
-      
+      sx={{
+        display: 'inline',
+        overflowWrap: 'anywhere',
+        '::after': {
+          content: '"\\A"',
+          whiteSpace: 'pre',
+        },
+      }}
     >
       {Array.from(line).map((char, i) => {
         const globalIdx = rowIdx * chunk + i
